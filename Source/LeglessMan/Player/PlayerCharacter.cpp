@@ -9,6 +9,7 @@
 #include "GameFramework/CharacterMovementComponent.h"
 #include "LeglessMan/Interfaces/Interact/InteractInterface.h"
 #include "Components/SphereComponent.h"
+#include "LeglessMan/NPCs/NPCCharacter.h"
 
 // Sets default values
 APlayerCharacter::APlayerCharacter()
@@ -158,6 +159,11 @@ void APlayerCharacter::OnInteractOverlapEnd(UPrimitiveComponent* OverlappedComp,
 	if (InteractActorsInRange.Contains(OtherActor))
 	{
 		InteractActorsInRange.RemoveSingle(OtherActor);
+
+		if (NPCTalkingTo == OtherActor)
+		{
+			NPCTalkingTo = nullptr;
+		}
 	}
 }
 

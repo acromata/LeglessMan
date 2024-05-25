@@ -80,7 +80,6 @@ protected:
 	UFUNCTION()
 	void OnInteractOverlapEnd(UPrimitiveComponent* OverlappedComp, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex);
 
-
 	UPROPERTY(EditDefaultsOnly, BlueprintReadWrite, Category = "Inventory")
 	int32 MaxLegsInInventory;
 	UPROPERTY(BlueprintReadWrite)
@@ -88,8 +87,19 @@ protected:
 
 	TArray<AActor*> InteractActorsInRange;
 
+	// Dialogue
+	UPROPERTY(BlueprintReadOnly)
+	class ANPCCharacter* NPCTalkingTo;
+
 public:
 
+	// Inventory
 	bool AddLegToInventory();
+
+	// Dialogue
+	UFUNCTION(BlueprintImplementableEvent)
+	void AddNewDialogueOption(const FString& DialogueResponseText, int32 DialogeResponseIndex);
+
+	void SetNPCTalkingTo(ANPCCharacter* NPC) { NPCTalkingTo = NPC; }
 
 };
