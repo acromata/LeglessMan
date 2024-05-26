@@ -11,6 +11,14 @@ UCLASS()
 class LEGLESSMAN_API ALegPickup : public AActor, public IInteractInterface
 {
 	GENERATED_BODY()
+
+protected:
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
+	class USphereComponent* Collision;
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
+	class UStaticMeshComponent* Mesh;
 	
 public:	
 	// Sets default values for this actor's properties
@@ -19,10 +27,6 @@ public:
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
-
-public:	
-	// Called every frame
-	virtual void Tick(float DeltaTime) override;
 
 protected:
 

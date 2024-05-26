@@ -96,6 +96,9 @@ public:
 	// Inventory
 	bool AddLegToInventory();
 
+	UFUNCTION(BlueprintCallable)
+	void RemoveNumOfLegsCollected(int32 Amount) { NumOfLegsCollected -= Amount; }
+
 	// Dialogue
 	UFUNCTION(BlueprintImplementableEvent)
 	void AddNewDialogueOption(const FString& DialogueResponseText, int32 DialogeResponseIndex);

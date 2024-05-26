@@ -126,7 +126,19 @@ void ANPCCharacter::OnOptionSelected(APlayerCharacter* Player)
 	bHasPlayerReadDialogue = false;
 	DialogueIndexToRead = 0;
 
-	// Show next dialogue
-	Interact(Player);
+	if (DialogueStateIndex != -1)
+	{
+		// Show next dialogue
+		Interact(Player);
+	}
+	else
+	{
+		// Close dialogue
+		EndDialogue();
+
+		// Reset player NPC talking to
+		Player->SetNPCTalkingTo(nullptr);
+	}
+
 }
 
