@@ -167,6 +167,10 @@ void APlayerCharacter::OnInteractOverlapEnd(UPrimitiveComponent* OverlappedComp,
 	}
 }
 
+#pragma endregion
+
+#pragma region Inventory
+
 bool APlayerCharacter::AddLegToInventory()
 {
 	if (NumOfLegsCollected < MaxLegsInInventory)

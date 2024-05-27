@@ -34,8 +34,6 @@ protected:
 
 	UFUNCTION(BlueprintImplementableEvent)
 	void PreDialogueStart();
-	UFUNCTION(BlueprintImplementableEvent)
-	void EndDialogue();
 	UFUNCTION(BlueprintCallable)
 	void OnOptionSelected(APlayerCharacter* Player);
 

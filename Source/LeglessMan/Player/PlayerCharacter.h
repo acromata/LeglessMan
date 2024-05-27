@@ -91,6 +91,9 @@ protected:
 	UPROPERTY(BlueprintReadOnly)
 	class ANPCCharacter* NPCTalkingTo;
 
+	// Key
+	int32 KeysInInventory;
+
 public:
 
 	// Inventory
@@ -98,6 +101,13 @@ public:
 
 	UFUNCTION(BlueprintCallable)
 	void RemoveNumOfLegsCollected(int32 Amount) { NumOfLegsCollected -= Amount; }
+
+	// Keys
+	void AddKeyToInventory() { KeysInInventory++; }
+
+	bool HasKeyInInventory() { return KeysInInventory >= 1; }
+
+	void RemoveKeyFromInventory() { KeysInInventory--; }
 
 	// Dialogue
 	UFUNCTION(BlueprintImplementableEvent)

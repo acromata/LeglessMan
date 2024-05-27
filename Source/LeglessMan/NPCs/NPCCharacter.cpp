@@ -66,9 +66,6 @@ void ANPCCharacter::Interact(APlayerCharacter* Player)
 				}
 				else
 				{
-					// Close dialogue
-					EndDialogue();
-
 					// Reset player NPC talking to
 					Player->SetNPCTalkingTo(nullptr);
 				}
@@ -95,9 +92,6 @@ void ANPCCharacter::Interact(APlayerCharacter* Player)
 				}
 				else
 				{
-					// Close dialogue
-					EndDialogue();
-
 					// Reset player NPC talking to
 					Player->SetNPCTalkingTo(nullptr);
 				}
@@ -123,19 +117,18 @@ void ANPCCharacter::OnOptionSelected(APlayerCharacter* Player)
 {
 	// Reset values
 	bIsShowingOptions = false;
-	bHasPlayerReadDialogue = false;
-	DialogueIndexToRead = 0;
 
 	if (DialogueStateIndex != -1)
 	{
+		// Reset values
+		bHasPlayerReadDialogue = false;
+		DialogueIndexToRead = 0;
+
 		// Show next dialogue
 		Interact(Player);
 	}
 	else
 	{
-		// Close dialogue
-		EndDialogue();
-
 		// Reset player NPC talking to
 		Player->SetNPCTalkingTo(nullptr);
 	}
