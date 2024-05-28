@@ -103,10 +103,13 @@ public:
 	void RemoveNumOfLegsCollected(int32 Amount) { NumOfLegsCollected -= Amount; }
 
 	// Keys
+	UFUNCTION(BlueprintCallable)
 	void AddKeyToInventory() { KeysInInventory++; }
 
+	UFUNCTION(BlueprintCallable)
 	bool HasKeyInInventory() { return KeysInInventory >= 1; }
 
+	UFUNCTION(BlueprintCallable)
 	void RemoveKeyFromInventory() { KeysInInventory--; }
 
 	// Dialogue

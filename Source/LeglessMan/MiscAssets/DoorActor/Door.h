@@ -37,13 +37,26 @@ protected:
 	virtual void Interact(APlayerCharacter* Player) override;
 
 	void OpenDoor(float DeltaTime);
+	void ShakeLock(float DeltaTime);
 
-	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Values")
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Door")
 	bool bIsLocked;
-	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Values")
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Door")
 	FRotator OpenRotation;
-	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Values")
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Door")
 	float DoorOpenSpeed;
 
+	FRotator TargetRotation;
+
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Lock")
+	float LockShakeAmplitude;
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Lock")
+	float LockShakeFrequency;
+	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Lock")
+	float LockShakeTime;
+	UPROPERTY(BlueprintReadOnly)
 	bool bIsOpen;
+	float RunningTime;
+
+	bool bShouldShakeLock;
 };

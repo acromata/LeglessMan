@@ -15,6 +15,10 @@ ADoor::ADoor()
 
 	LockMesh = CreateDefaultSubobject<UStaticMeshComponent>("Lock");
 	LockMesh->SetupAttachment(FrameMesh);
+
+	LockShakeAmplitude = 5.f;
+	LockShakeFrequency = 1.f;
+	LockShakeTime = 1.f;
 }
 
 // Called when the game starts or when spawned
@@ -31,6 +35,8 @@ void ADoor::Tick(float DeltaTime)
 	Super::Tick(DeltaTime);
 
 	OpenDoor(DeltaTime);
+
+	ShakeLock(DeltaTime);
 }
 
 void ADoor::Interact(APlayerCharacter* Player)
@@ -43,18 +49,51 @@ void ADoor::Interact(APlayerCharacter* Player)
 			bIsLocked = false;
 			LockMesh->SetVisibility(false);
 		}
+		else
+		{
+			RunningTime = 0;
+			LockMesh->SetRelativeRotation(FRotator(0));
+
+			bShouldShakeLock = true;
+		}
 	}
 	else
 	{
-		bIsOpen = true;
+		if (bIsOpen)
+		{
+			TargetRotation = FRotator(0);
+			bIsOpen = false;
+		}
+		else
+		{
+			TargetRotation = FRotator(OpenRotation);
+			bIsOpen = true;
+		}
 	}
 }
 
 void ADoor::OpenDoor(float DeltaTime)
 {
-	if (bIsOpen && !DoorMesh->GetRelativeLocation().IsNearlyZero())
-	{
-		DoorMesh->SetRelativeRotation(FMath::RInterpTo(GetActorRotation(), OpenRotation, DeltaTime, DoorOpenSpeed));
-	}
+	DoorMesh->SetRelativeRotation(FMath::RInterpTo(DoorMesh->GetRelativeRotation(), TargetRotation, DeltaTime, DoorOpenSpeed));
+}
 
+void ADoor::ShakeLock(float DeltaTime)
+{
+	if (bShouldShakeLock)
+	{
+		RunningTime += DeltaTime;
+
+		float ShakeAmount = FMath::Sin(RunningTime * LockShakeFrequency * 2.0f * PI) * LockShakeAmplitude;
+
+		FRotator NewRotation = LockMesh->GetRelativeRotation();
+		NewRotation.Pitch += ShakeAmount;
+		LockMesh->SetRelativeRotation(NewRotation);
+
+		if (RunningTime >= LockShakeTime)
+		{
+			bShouldShakeLock = false;
+			RunningTime = 0;
+			LockMesh->SetRelativeRotation(FRotator(0));
+		}
+	}
 }

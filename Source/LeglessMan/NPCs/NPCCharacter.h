@@ -36,6 +36,8 @@ protected:
 	void PreDialogueStart();
 	UFUNCTION(BlueprintCallable)
 	void OnOptionSelected(APlayerCharacter* Player);
+	UFUNCTION(BlueprintCallable)
+	void ResetDialogue();
 
 	void ShowDialogueOptions(APlayerCharacter* Player);
 
@@ -49,7 +51,7 @@ protected:
 	int32 DialogueIndexToRead;
 	UPROPERTY(BlueprintReadOnly)
 	FString CurrentDialogue;
-	UPROPERTY(BlueprintReadOnly)
+	UPROPERTY(BlueprintReadWrite)
 	bool bHasPlayerReadDialogue;
 	UPROPERTY(BlueprintReadWrite)
 	bool bIsShowingOptions;

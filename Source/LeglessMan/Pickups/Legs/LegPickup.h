@@ -3,22 +3,13 @@
 #pragma once
 
 #include "CoreMinimal.h"
-#include "GameFramework/Actor.h"
-#include "LeglessMan/Interfaces/Interact/InteractInterface.h"
+#include "LeglessMan/Pickups/Pickup.h"
 #include "LegPickup.generated.h"
 
 UCLASS()
-class LEGLESSMAN_API ALegPickup : public AActor, public IInteractInterface
+class LEGLESSMAN_API ALegPickup : public APickup
 {
 	GENERATED_BODY()
-
-protected:
-
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
-	class USphereComponent* Collision;
-
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
-	class UStaticMeshComponent* Mesh;
 	
 public:	
 	// Sets default values for this actor's properties

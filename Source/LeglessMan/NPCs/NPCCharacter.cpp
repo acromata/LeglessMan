@@ -120,9 +120,8 @@ void ANPCCharacter::OnOptionSelected(APlayerCharacter* Player)
 
 	if (DialogueStateIndex != -1)
 	{
-		// Reset values
-		bHasPlayerReadDialogue = false;
-		DialogueIndexToRead = 0;
+		// Reset dialogue
+		ResetDialogue();
 
 		// Show next dialogue
 		Interact(Player);
@@ -133,5 +132,12 @@ void ANPCCharacter::OnOptionSelected(APlayerCharacter* Player)
 		Player->SetNPCTalkingTo(nullptr);
 	}
 
+}
+
+void ANPCCharacter::ResetDialogue()
+{
+	// Reset values
+	bHasPlayerReadDialogue = false;
+	DialogueIndexToRead = 0;
 }
 
