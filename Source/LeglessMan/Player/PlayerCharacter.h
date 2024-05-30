@@ -97,6 +97,7 @@ protected:
 public:
 
 	// Inventory
+	UFUNCTION(BlueprintCallable)
 	bool AddLegToInventory();
 
 	UFUNCTION(BlueprintCallable)

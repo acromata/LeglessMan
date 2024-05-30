@@ -39,7 +39,7 @@ protected:
 	void OpenDoor(float DeltaTime);
 	void ShakeLock(float DeltaTime);
 
-	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Door")
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Door")
 	bool bIsLocked;
 	UPROPERTY(EditAnywhere, BlueprintReadOnly, Category = "Door")
 	FRotator OpenRotation;
